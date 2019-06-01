@@ -82,7 +82,6 @@ public class Follower : MonoBehaviour
         {
             //Move towards target
             rigid.velocity = new Vector3(transform.forward.x * speed, rigid.velocity.y, transform.forward.z * speed);
-            Debug.Log(rigid.velocity);
         }
     }
 }

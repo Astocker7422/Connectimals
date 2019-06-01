@@ -13,9 +13,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 3
-  lastUpdatedAtString: 2019-06-01T00:35:37.456-05:00
-  initializedAtString: 2019-06-01T00:29:53.380-05:00
+  lastUpdatedAtString: 2019-06-01T00:45:18.769-05:00
+  initializedAtString: 2019-06-01T00:45:18.769-05:00
   log:
+  - commitID: 3a44cd3da03279fc0590d096d85b01fa3dcc806a
+    mergeA: 
+    mergeB: 
+    authorName: Ethan
+    authorEmail: theejdavidson@gmail.com
+    commitEmail: theejdavidson@gmail.com
+    commitName: Ethan
+    summary: lib changes
+    description: 'lib changes
+
+
+      library changes'
+    timeString: 2019-06-01T00:36:08.000-05:00
+    commitTimeString: 2019-06-01T00:36:08.000-05:00
+    changes:
+    - path: Library/CrashedAssetImports.txt
+      fullPath: /Users/theejdavidson/OPP/Connectimals/Library/CrashedAssetImports.txt
+      projectPath: Library/CrashedAssetImports.txt
+      originalPath: 
+      status: 5
+      staged: 0
+    - path: Library/gfu/cache/branches.yaml
+      fullPath: /Users/theejdavidson/OPP/Connectimals/Library/gfu/cache/branches.yaml
+      projectPath: Library/gfu/cache/branches.yaml
+      originalPath: 
+      status: 4
+      staged: 0
+    - path: Library/gfu/cache/gitlocks.yaml
+      fullPath: /Users/theejdavidson/OPP/Connectimals/Library/gfu/cache/gitlocks.yaml
+      projectPath: Library/gfu/cache/gitlocks.yaml
+      originalPath: 
+      status: 3
+      staged: 0
+    - path: Library/gfu/cache/gitlog.yaml
+      fullPath: /Users/theejdavidson/OPP/Connectimals/Library/gfu/cache/gitlog.yaml
+      projectPath: Library/gfu/cache/gitlog.yaml
+      originalPath: 
+      status: 3
+      staged: 0
+    - path: Library/gfu/cache/gitstatusentries.yaml
+      fullPath: /Users/theejdavidson/OPP/Connectimals/Library/gfu/cache/gitstatusentries.yaml
+      projectPath: Library/gfu/cache/gitstatusentries.yaml
+      originalPath: 
+      status: 3
+      staged: 0
+    - path: Library/gfu/cache/gittrackingstatus.yaml
+      fullPath: /Users/theejdavidson/OPP/Connectimals/Library/gfu/cache/gittrackingstatus.yaml
+      projectPath: Library/gfu/cache/gittrackingstatus.yaml
+      originalPath: 
+      status: 3
+      staged: 0
   - commitID: 89fd01a4a615490a30644ac488b0d78b45f7184b
     mergeA: 
     mergeB: 

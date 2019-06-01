@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 2
-  lastUpdatedAtString: 2019-06-01T00:35:51.448-05:00
+  lastUpdatedAtString: 2019-06-01T00:39:25.301-05:00
   initializedAtString: 2019-06-01T00:33:27.331-05:00
   localBranches:
   - name: master
@@ -22,6 +22,8 @@ MonoBehaviour:
   - name: origin/HEAD
     tracking: '[None]'
   - name: origin/following
+    tracking: '[None]'
+  - name: origin/master
     tracking: '[None]'
   remotes:
   - name: origin
@@ -47,6 +49,7 @@ MonoBehaviour:
     - Values:
       - HEAD
       - following
+      - master
     subKeyValues:
     - Values:
       - name: HEAD
@@ -55,6 +58,11 @@ MonoBehaviour:
           url: https://github.com/Astocker7422/Connectimals.git
         trackingBranch: 
       - name: following
+        remote:
+          name: origin
+          url: https://github.com/Astocker7422/Connectimals.git
+        trackingBranch: 
+      - name: master
         remote:
           name: origin
           url: https://github.com/Astocker7422/Connectimals.git

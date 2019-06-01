@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Controls behaviors of the follower objects
+//Attached to the follower objects
 public class Follower : MonoBehaviour
 {
     //Follower attributes

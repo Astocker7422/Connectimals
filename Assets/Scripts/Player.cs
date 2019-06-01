@@ -50,7 +50,10 @@ public class Player : MonoBehaviour
     //Applies movement to the player using the RigidBody
     private void Movement(float horizontal, float vertical)
     {
-        rigid.velocity = new Vector3(horizontal, rigid.velocity.y, vertical);
+        Vector3 direction = Camera.main.transform.TransformDirection(new Vector3(horizontal, 0, vertical));
+        rigid.velocity = new Vector3(direction.x, rigid.velocity.y, direction.z);
+
+        transform.rotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
     }
 
     //Access list of followers

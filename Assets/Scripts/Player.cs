@@ -15,6 +15,12 @@ public class Player : MonoBehaviour
     //List of current followers
     private List<GameObject> followers;
 
+    //Total number of followers in the level
+    private int totalFollowers;
+
+    //Text displaying number of followers collected
+    private TMPro.TMP_Text countText;
+
     void Start()
     {
         //Initialize components
@@ -22,6 +28,13 @@ public class Player : MonoBehaviour
 
         //Initialize list of followers
         followers = new List<GameObject>();
+
+        //Find total number of followers in the level
+        totalFollowers = GameObject.Find("Followers").GetComponentsInChildren<Transform>().Length - 1;
+
+        //Find and initialize text diplaying number of followers collected
+        countText = GameObject.Find("Canvas").GetComponentInChildren<TMPro.TMP_Text>();
+        SetCountText();
     }
 
     void Update()
@@ -37,13 +50,19 @@ public class Player : MonoBehaviour
     //Applies movement to the player using the RigidBody
     private void Movement(float horizontal, float vertical)
     {
-        rigid.velocity = new Vector3(horizontal, 0.0f, vertical) * speed;
+        rigid.velocity = new Vector3(horizontal, rigid.velocity.y, vertical);
     }
 
     //Access list of followers
     public List<GameObject> GetFollowers()
     {
         return followers;
+    }
+
+    //Update the text diplaying the number of followers collected
+    private void SetCountText()
+    {
+        countText.text = "Connectimals: " + followers.Count + "/" + totalFollowers;
     }
 
     void OnTriggerEnter(Collider other)
@@ -59,6 +78,8 @@ public class Player : MonoBehaviour
 
                 //Add the other object to the list of followers
                 followers.Add(other.gameObject);
+
+                SetCountText();
             }
         }
     }

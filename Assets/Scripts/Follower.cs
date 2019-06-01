@@ -4,49 +4,85 @@ using UnityEngine;
 
 public class Follower : MonoBehaviour
 {
+    //Follower attributes
     public float speed;
-    public float turnSpeed;
     public float distance;
 
-    //The player
+    //The Player
     public Player player;
 
+    //Follower components
     private Rigidbody rigid;
 
+    //The GameObject this Follower object should follow
+    private GameObject leader;
+
+    //Indicates whether this Follower object is following another object
     private bool isFollowing;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Initialize components
         rigid = transform.GetComponent<Rigidbody>();
+
+        //Indicate this Follower object is not following another object
+        isFollowing = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isFollowing)
+        //If this Follower is following another object,
+        if (isFollowing)
         {
-            MoveToPlayer();
+            //Move this Follower object toward its leader
+            MoveToLeader();
         }
     }
 
+    //Indicate this Follower is or is not following another object
     public void SetIsFollowing(bool newFollowing)
     {
+        //If this Follower is going to be following another object,
+        if (newFollowing)
+        {
+            //Access the Player's list of followers
+            List<GameObject> followerList = player.GetFollowers();
+
+            //Access the size of the list
+            int listSize = followerList.Count;
+
+            //If the list is not empty,
+            if (listSize > 0)
+            {
+                //Set the leader to the last follower in the list
+                leader = followerList[listSize - 1];
+            }
+            //If the list is empty,
+            else
+            {
+                leader = player.gameObject;
+            }
+        }
+
+        //Set the indicator based on the input
         isFollowing = newFollowing;
     }
 
-    public void MoveToPlayer()
+    //Moves this Follower object toward its leader
+    private void MoveToLeader()
     {
         //Look at target
-        Vector3 v3 = player.transform.position - transform.position;
-        v3.y = 0.0f;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(v3), turnSpeed * Time.deltaTime);
+        Vector3 v3 = leader.transform.position - transform.position;
+        transform.rotation = Quaternion.LookRotation(v3);
 
-        //If the enemy is out of attack range,
-        if (Vector3.Distance(transform.position, player.transform.position) > distance)
+        //If the leader is out of attack range,
+        if (Vector3.Distance(transform.position, leader.transform.position) > distance)
         {
             //Move towards target
             rigid.velocity = new Vector3(transform.forward.x * speed, rigid.velocity.y, transform.forward.z * speed);
+            Debug.Log(rigid.velocity);
         }
     }
 }

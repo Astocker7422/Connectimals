@@ -9,11 +9,19 @@ public class Player : MonoBehaviour
     //Player attributes
     public float speed;
 
+    //Player components
     private Rigidbody rigid;
+
+    //List of current followers
+    private List<GameObject> followers;
 
     void Start()
     {
+        //Initialize components
         rigid = GetComponent<Rigidbody>();
+
+        //Initialize list of followers
+        followers = new List<GameObject>();
     }
 
     void Update()
@@ -27,16 +35,31 @@ public class Player : MonoBehaviour
     }
 
     //Applies movement to the player using the RigidBody
-    void Movement(float horizontal, float vertical)
+    private void Movement(float horizontal, float vertical)
     {
         rigid.velocity = new Vector3(horizontal, 0.0f, vertical) * speed;
     }
 
+    //Access list of followers
+    public List<GameObject> GetFollowers()
+    {
+        return followers;
+    }
+
     void OnTriggerEnter(Collider other)
     {
+        //If the other object is a Follower,
         if(other.CompareTag("Follower"))
         {
-            other.GetComponent<Follower>().SetIsFollowing(true);
+            //If the list of followers does not contain the other object
+            if(!followers.Contains(other.gameObject))
+            {
+                //Indicate the other object is following another object
+                other.GetComponent<Follower>().SetIsFollowing(true);
+
+                //Add the other object to the list of followers
+                followers.Add(other.gameObject);
+            }
         }
     }
 }

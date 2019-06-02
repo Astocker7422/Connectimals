@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 //Controls behaviors of the follower objects
 //Attached to the follower objects
@@ -15,6 +16,7 @@ public class Follower : MonoBehaviour
 
     //Follower components
     private Rigidbody rigid;
+    private NavMeshAgent agent;
 
     //The GameObject this Follower object should follow
     private GameObject leader;
@@ -27,6 +29,7 @@ public class Follower : MonoBehaviour
     {
         //Initialize components
         rigid = transform.GetComponent<Rigidbody>();
+        agent = transform.GetComponent<NavMeshAgent>();
 
         //Indicate this Follower object is not following another object
         isFollowing = false;
@@ -64,6 +67,7 @@ public class Follower : MonoBehaviour
             //If the list is empty,
             else
             {
+                //Set the leader to the player
                 leader = player.gameObject;
             }
         }
@@ -75,15 +79,6 @@ public class Follower : MonoBehaviour
     //Moves this Follower object toward its leader
     private void MoveToLeader()
     {
-        //Look at target
-        Vector3 v3 = leader.transform.position - transform.position;
-        transform.rotation = Quaternion.LookRotation(v3);
-
-        //If the leader is out of attack range,
-        if (Vector3.Distance(transform.position, leader.transform.position) > distance)
-        {
-            //Move towards target
-            rigid.velocity = new Vector3(transform.forward.x * speed, rigid.velocity.y, transform.forward.z * speed);
-        }
+        agent.SetDestination(leader.transform.position);
     }
 }

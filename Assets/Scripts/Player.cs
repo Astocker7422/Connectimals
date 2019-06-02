@@ -53,7 +53,12 @@ public class Player : MonoBehaviour
         Vector3 direction = Camera.main.transform.TransformDirection(new Vector3(horizontal, 0, vertical));
         rigid.velocity = new Vector3(direction.x, rigid.velocity.y, direction.z);
 
-        transform.rotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        Vector3 newRotDir = new Vector3(direction.x, 0, direction.z);
+
+        if(newRotDir != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(newRotDir);
+        }
     }
 
     //Access list of followers

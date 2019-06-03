@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     private Rigidbody rigid;
 
     //List of current followers
-    private List<GameObject> followers;
+    public List<GameObject> followers;
 
     //Total number of followers in the level
     private int totalFollowers;
@@ -33,8 +33,13 @@ public class Player : MonoBehaviour
     //Indicates if the player has lost
     private bool hasLost;
 
+    //Follow script of the main camera
+    private CameraFollow cameraScript;
+
     void Start()
     {
+        Time.timeScale = 1;
+
         //Initialize components
         rigid = GetComponent<Rigidbody>();
 
@@ -60,6 +65,8 @@ public class Player : MonoBehaviour
 
         //Indicate the player has not lost
         hasLost = false;
+
+        cameraScript = Camera.main.GetComponent<CameraFollow>();
     }
 
     void Update()
@@ -128,34 +135,26 @@ public class Player : MonoBehaviour
             //UPDATE LEADER OF EACH FOLLOWER
             //
 
-            //Remove the follower at the input index
-            followers.RemoveAt(index);
-
             //For each index in the list of followers from index + 1 to the end,
             for (int listIndex = followers.Count - 1; listIndex >= index; listIndex--)
             {
                 //Access the follower object at that index
                 Follower currFollower = followers[listIndex].GetComponent<Follower>();
 
-                //Update its index to the current index
-                currFollower.SetIndex(listIndex);
-
-                //If the current index is the index of the removed follower,
-                if (listIndex == index)
+                if(listIndex != index)
                 {
-                    //If this follower is now the first in the list
-                    if(listIndex == 0)
-                    {
-                        //Update the follower's leader to be the player
-                        currFollower.SetLeader(transform.gameObject);
-                    }
-                    else
-                    {
-                        //Update the follower's leader
-                        currFollower.SetLeader(followers[listIndex - 1]);
-                    }
+                    currFollower.SetIndicatorColor(Color.yellow);
+
+                    currFollower.SetIsFollowing(false);
+
+                    cameraScript.IncreaseDistance(false);
                 }
             }
+
+            //Remove all followers from list from index to end of list
+            followers.RemoveRange(index, followers.Count - index);
+
+            cameraScript.IncreaseDistance(false);
 
             //Update number of followers lost
             lostFollowers += 1;
@@ -178,16 +177,44 @@ public class Player : MonoBehaviour
         //If the other object is a Follower,
         if(other.CompareTag("Follower"))
         {
-            //If the list of followers does not contain the other object
-            if(!followers.Contains(other.gameObject))
+            Follower newFollower = other.GetComponent<Follower>();
+
+            if (!newFollower.isDead && !other.name.Contains("Indicator"))
             {
-                //Indicate the other object is following another object
-                other.GetComponent<Follower>().SetIsFollowing(true);
+                //If the list of followers does not contain the other object
+                if (!followers.Contains(other.gameObject))
+                {
+                    //Indicate the other object is following another object
+                    newFollower.SetIsFollowing(true);
 
-                //Add the other object to the list of followers
-                followers.Add(other.gameObject);
+                    //Add the other object to the list of followers
+                    followers.Add(other.gameObject);
 
-                SetCountText();
+                    cameraScript.IncreaseDistance(true);
+
+                    //Update the count text
+                    SetCountText();
+                }
+                //If the list of followers does contain the other object,
+                else
+                {
+                    //If the other object is not following another object
+                    if (!newFollower.GetIsFollowing())
+                    {
+                        //Indicate it should follow another object
+                        other.GetComponent<Follower>().SetIsFollowing(true);
+
+                        //For each index from the index of the other object to the end of the follower list,
+                        for (int index = followers.IndexOf(other.gameObject); index < followers.Count; index++)
+                        {
+                            //Access the follower at that index
+                            Follower currFollower = followers[index].GetComponent<Follower>();
+
+                            //Change the indicator color to the connected color
+                            currFollower.SetIndicatorColor(Color.green);
+                        }
+                    }
+                }
             }
         }
     }

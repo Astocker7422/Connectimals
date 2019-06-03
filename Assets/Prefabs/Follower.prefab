@@ -126,6 +126,7 @@ MonoBehaviour:
   speed: 3
   distance: 2
   player: {fileID: 0}
+  leader: {fileID: 0}
 --- !u!195 &2921887404669102028
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -162,7 +163,7 @@ GameObject:
   - component: {fileID: 2783003869544824715}
   m_Layer: 0
   m_Name: Connection Indicator
-  m_TagString: Untagged
+  m_TagString: Follower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

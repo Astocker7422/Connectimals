@@ -1,5 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8136920457206408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7747081911532211165}
+  - component: {fileID: 3934430952864451060}
+  m_Layer: 8
+  m_Name: NoodleBoy Animation Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7747081911532211165
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8136920457206408}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 868321492693229935}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &3934430952864451060
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8136920457206408}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: bf1ee9aab20df452a99ed8329ee61dec, type: 3}
+  m_Controller: {fileID: 9100000, guid: 543d94435201c4964be683384b38e5eb, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 1
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &225786234648386350
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +241,7 @@ GameObject:
   - component: {fileID: 5972463582926333883}
   - component: {fileID: 3449868832084289138}
   - component: {fileID: 5059646142010540397}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: R_Clavicle_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +400,7 @@ GameObject:
   - component: {fileID: 5335571944039844616}
   - component: {fileID: 1254718834096607402}
   - component: {fileID: 8836800462850003870}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: L_Hand_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +732,7 @@ GameObject:
   - component: {fileID: 2978339216484044487}
   - component: {fileID: 6550433622188247836}
   - component: {fileID: 7928111157501315615}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hip_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -697,13 +747,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1004467823821923232}
   m_LocalRotation: {x: 0.018259263, y: 2.7903346e-17, z: 1.2201158e-16, w: 0.9998333}
-  m_LocalPosition: {x: -0, y: 0.10699999, z: -5.551115e-19}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0.42571902, z: 0.25995648}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4173893372320995724}
   - {fileID: 650891610623456714}
   - {fileID: 8069110268819448505}
-  m_Father: {fileID: 7286812210644509606}
+  m_Father: {fileID: 8795446674269918375}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6550433622188247836
@@ -747,7 +797,7 @@ GameObject:
   - component: {fileID: 3373800917451440811}
   - component: {fileID: 1300195916101345475}
   - component: {fileID: 4215329835053056024}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -825,7 +875,7 @@ GameObject:
   - component: {fileID: 770571225539594666}
   - component: {fileID: 749111002323066948}
   - component: {fileID: 8945350252578142103}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: R_Hand_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -982,7 +1032,7 @@ GameObject:
   - component: {fileID: 6455305017133916917}
   - component: {fileID: 6663120651820244635}
   - component: {fileID: 8434792683874264909}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: L_Clavicle_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1141,7 +1191,7 @@ GameObject:
   - component: {fileID: 930509412857398951}
   - component: {fileID: 773486244459718086}
   - component: {fileID: 3692324840547415304}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: R_Knee_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1300,7 +1350,7 @@ GameObject:
   - component: {fileID: 2628150734504863723}
   - component: {fileID: 2207200297208073606}
   - component: {fileID: 8387925261036986217}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: R_Shoulder_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1490,7 +1540,7 @@ GameObject:
   - component: {fileID: 401053797546306285}
   - component: {fileID: 7718059417815669562}
   - component: {fileID: 2987346272847892386}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: L_Elbow_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1637,6 +1687,80 @@ CapsuleCollider:
   m_Height: 0.08
   m_Direction: 0
   m_Center: {x: 0.04, y: 0, z: 0}
+--- !u!1 &2500952488425709220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8795446674269918375}
+  - component: {fileID: 3772344305127450292}
+  m_Layer: 0
+  m_Name: NoodleBoy Puppetmaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8795446674269918375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500952488425709220}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.00000023841858, y: 0.1495719, z: -0.025995648}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_Children:
+  - {fileID: 2978339216484044487}
+  m_Father: {fileID: 7286812210644509606}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3772344305127450292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500952488425709220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c86ba130e5a5458a98e3b482192a6dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  humanoidConfig: {fileID: 0}
+  targetRoot: {fileID: 0}
+  state: 0
+  stateSettings:
+    killDuration: 1
+    deadMuscleWeight: 0.01
+    deadMuscleDamper: 2
+    maxFreezeSqrVelocity: 0.02
+    freezePermanently: 0
+    enableAngularLimitsOnKill: 1
+    enableInternalCollisionsOnKill: 1
+  mode: 0
+  blendTime: 0.1
+  fixTargetTransforms: 1
+  solverIterationCount: 6
+  visualizeTargetPose: 1
+  mappingWeight: 1
+  pinWeight: 1
+  muscleWeight: 1
+  muscleSpring: 100
+  muscleDamper: 0
+  pinPow: 4
+  pinDistanceFalloff: 5
+  updateJointAnchors: 1
+  supportTranslationAnimation: 0
+  angularLimits: 0
+  internalCollisions: 0
+  muscles: []
+  solvers: []
+  storeTargetMappedState: 1
 --- !u!1 &3088986592955706865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1879,7 +2003,7 @@ GameObject:
   - component: {fileID: 1675036759930611068}
   - component: {fileID: 5353902396514957035}
   - component: {fileID: 4135397681305282200}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: R_Wrist_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2038,7 +2162,7 @@ GameObject:
   - component: {fileID: 7818589955366738471}
   - component: {fileID: 1179293754633981483}
   - component: {fileID: 2280323723287774738}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: R_Leg_Top_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2372,7 +2496,7 @@ GameObject:
   - component: {fileID: 2999732409604485444}
   - component: {fileID: 5805379969960839318}
   - component: {fileID: 3435055950845208592}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2450,7 +2574,7 @@ GameObject:
   - component: {fileID: 1598886071068458890}
   - component: {fileID: 2250768986366905233}
   - component: {fileID: 1113991568272857963}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spine02_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2609,7 +2733,7 @@ GameObject:
   - component: {fileID: 6349358979353359939}
   - component: {fileID: 2245569239447638887}
   - component: {fileID: 1665086457870383929}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Head_Top_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2769,7 +2893,7 @@ GameObject:
   - component: {fileID: 931782445906422256}
   - component: {fileID: 2961930599215740389}
   - component: {fileID: 2437805224712884940}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: L_Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2878,7 +3002,7 @@ GameObject:
   - component: {fileID: 137603929232357712}
   - component: {fileID: 8698688643754188467}
   - component: {fileID: 5837938693515773}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: L_Shoulder_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3035,7 +3159,7 @@ GameObject:
   - component: {fileID: 7973751667863727718}
   - component: {fileID: 2097667394075689506}
   - component: {fileID: 2733474426431802183}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3113,7 +3237,7 @@ GameObject:
   - component: {fileID: 4191936569047319248}
   - component: {fileID: 9193240759912228638}
   - component: {fileID: 7941878218980244925}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: L_Knee_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3260,6 +3384,53 @@ CapsuleCollider:
   m_Height: 0.01
   m_Direction: 0
   m_Center: {x: 0, y: -0.005, z: 0}
+--- !u!1 &5213571562670070804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 868321492693229935}
+  - component: {fileID: 2551465277710949986}
+  m_Layer: 8
+  m_Name: NoodleBoy CharacterController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &868321492693229935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5213571562670070804}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.00000023841858, y: 0.1495719, z: -0.025995648}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_Children:
+  - {fileID: 7747081911532211165}
+  m_Father: {fileID: 7286812210644509606}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2551465277710949986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5213571562670070804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a977928fbfc8c4b44a236a510332f435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  breakChain: 0
+  followers: []
 --- !u!1 &5289054586922227310
 GameObject:
   m_ObjectHideFlags: 0
@@ -3416,7 +3587,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7286812210644509606}
-  - component: {fileID: 834844716177903324}
   m_Layer: 0
   m_Name: NoodleBoy_Rig
   m_TagString: Untagged
@@ -3435,33 +3605,15 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
-  - {fileID: 2978339216484044487}
   - {fileID: 982062532422970522}
   - {fileID: 7171224112226925502}
   - {fileID: 8097264521492283028}
   - {fileID: 7111731996070674886}
+  - {fileID: 8795446674269918375}
+  - {fileID: 868321492693229935}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &834844716177903324
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6000110552249471413}
-  m_Enabled: 0
-  m_Avatar: {fileID: 9000000, guid: bf1ee9aab20df452a99ed8329ee61dec, type: 3}
-  m_Controller: {fileID: 9100000, guid: 543d94435201c4964be683384b38e5eb, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 1
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6105700225521903617
 GameObject:
   m_ObjectHideFlags: 0
@@ -3474,7 +3626,7 @@ GameObject:
   - component: {fileID: 3583846038072551570}
   - component: {fileID: 3570151547080030570}
   - component: {fileID: 7493795874973010361}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: R_Elbow_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3653,7 +3805,7 @@ Transform:
   - {fileID: 1309059264579315627}
   - {fileID: 6461244720345681010}
   m_Father: {fileID: 7286812210644509606}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6424868349013685726
 GameObject:
@@ -3845,7 +3997,7 @@ GameObject:
   - component: {fileID: 4716629282361118198}
   - component: {fileID: 6924961934848055335}
   - component: {fileID: 3369324517802271589}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: L_Wrist_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4003,7 +4155,7 @@ GameObject:
   - component: {fileID: 7171224112226925502}
   - component: {fileID: 4336996519594740239}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4024,7 +4176,7 @@ Transform:
   - {fileID: 5088231280417573645}
   - {fileID: 1515055156012696420}
   m_Father: {fileID: 7286812210644509606}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &4336996519594740239
 SkinnedMeshRenderer:
@@ -4206,7 +4358,7 @@ Transform:
   - {fileID: 1530956058668606007}
   - {fileID: 2295976284436067109}
   m_Father: {fileID: 7286812210644509606}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7227742108152536625
 GameObject:
@@ -4249,7 +4401,7 @@ GameObject:
   - component: {fileID: 5917933569480917476}
   - component: {fileID: 4279550752029910916}
   - component: {fileID: 8304957981304702693}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: R_Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4374,7 +4526,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7286812210644509606}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7677307597640463110
 GameObject:
@@ -4388,7 +4540,7 @@ GameObject:
   - component: {fileID: 2169063380218754321}
   - component: {fileID: 2863162048352519955}
   - component: {fileID: 2198331037096980447}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: L_Leg_Top_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4664,7 +4816,7 @@ GameObject:
   - component: {fileID: 2179277813822962195}
   - component: {fileID: 4820359740857681967}
   - component: {fileID: 4147289117599773644}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spine01_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4910,7 +5062,7 @@ GameObject:
   - component: {fileID: 1853858383469893712}
   - component: {fileID: 4186220680197737105}
   - component: {fileID: 6706753480302814866}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spine03_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5071,7 +5223,7 @@ GameObject:
   - component: {fileID: 2051451220282875655}
   - component: {fileID: 8043075687318109360}
   - component: {fileID: 4171608917708217923}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: L_Foot_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5348,7 +5500,7 @@ GameObject:
   - component: {fileID: 6002289736871888098}
   - component: {fileID: 5057324618733156131}
   - component: {fileID: 2924694890415769673}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: R_Foot_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5506,7 +5658,7 @@ GameObject:
   - component: {fileID: 6512615314525199847}
   - component: {fileID: 8053053641166503359}
   - component: {fileID: 3867827536708244700}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Neck_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}

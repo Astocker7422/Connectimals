@@ -14,21 +14,27 @@ public class Follower : MonoBehaviour
     //The Player
     public Player player;
 
+    public bool isDead;
+
     //Follower components
     private Rigidbody rigid;
     private NavMeshAgent agent;
 
     //The GameObject this Follower object should follow
-    private GameObject leader;
+    public GameObject leader;
 
     //Indicates this follower has a leader
     private GameObject connectionIndicator;
+    private Renderer indicatorRenderer;
 
     //Indicates whether this Follower object is following another object
     private bool isFollowing;
 
     //This follower's index in the player's list of followers
-    private int index;
+    public int index;
+
+    //Indicates if the follower is in the player's list of followers
+    private bool inList;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +45,7 @@ public class Follower : MonoBehaviour
 
         //Find the connection indicator object and deactivate it
         connectionIndicator = transform.FindDeepChild("Connection Indicator").gameObject;
+        indicatorRenderer = connectionIndicator.GetComponent<Renderer>();
         connectionIndicator.SetActive(false);
 
         //Indicate this Follower object is not following another object
@@ -46,6 +53,10 @@ public class Follower : MonoBehaviour
 
         //Initialize a value for index
         index = 0;
+
+        inList = false;
+
+        isDead = false;
     }
 
     // Update is called once per frame
@@ -57,6 +68,11 @@ public class Follower : MonoBehaviour
             //Move this Follower object toward its leader
             MoveToLeader();
         }
+    }
+
+    public bool GetIsFollowing()
+    {
+        return isFollowing;
     }
 
     //Indicate this Follower is or is not following another object
@@ -76,22 +92,25 @@ public class Follower : MonoBehaviour
             {
                 //Set the leader to the last follower in the list
                 leader = followerList[listSize - 1];
-
-                //Update this follower's index
-                index = listSize - 1;
             }
             //If the list is empty,
             else
             {
                 //Set the leader to the player
                 leader = player.gameObject;
-
-                //Update this follower's index
-                index = 0;
             }
+
+            //Update the index
+            index = listSize;
+
+            //Indicate the follower is in the player's list
+            inList = true;
 
             //Activate the connection indicator object
             connectionIndicator.SetActive(true);
+
+            //Change indicator to connected color
+            indicatorRenderer.material.color = Color.green;
         }
 
         //Set the indicator based on the input
@@ -107,7 +126,19 @@ public class Follower : MonoBehaviour
     //Set the object this follower should follow
     public void SetLeader(GameObject newLeader)
     {
+        //Set new leader
         leader = newLeader;
+
+        //Stop movement
+        isFollowing = false;
+
+        //Change indicator to disconnected color
+        indicatorRenderer.material.color = Color.yellow;
+    }
+
+    public void SetIndicatorColor(Color newColor)
+    {
+        indicatorRenderer.material.color = newColor;
     }
 
     //Moves this Follower object toward its leader
@@ -122,11 +153,15 @@ public class Follower : MonoBehaviour
         {
             agent.ResetPath();
 
+            inList = false;
+
+            //Change indicator to dead color
+            indicatorRenderer.material.color = Color.red;
+
             //Indicate this follower has no leader
             isFollowing = false;
 
-            //Deactivate the connection indicator object
-            connectionIndicator.SetActive(false);
+            isDead = true;
 
             //Update the player's list of followers
             player.UpdateFollowers(index);

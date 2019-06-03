@@ -10,6 +10,9 @@ public class CameraFollow : MonoBehaviour
     public GameObject player;
     private Player playerScript;
 
+    //The amount the camera's distance from player should change after gain/lose follower
+    public float distanceChange;
+
     //Distance from the player
     private float distance;
 
@@ -30,6 +33,8 @@ public class CameraFollow : MonoBehaviour
     void Start ()
     {
         playerScript = player.GetComponent<Player>();
+
+        distanceChange = 1.1f;
 
         //Initialize distance from player and movement speed
         distance = 7.21f;
@@ -98,6 +103,19 @@ public class CameraFollow : MonoBehaviour
             //Update previous transform values
             lastPosition = transform.position;
             lastRotation = transform.rotation;
+        }
+    }
+
+    //Increases or decreases the camera's distance from the player based on input bool
+    public void IncreaseDistance(bool increase)
+    {
+        if(increase)
+        {
+            distance = distance * distanceChange;
+        }
+        else
+        {
+            distance = distance / distanceChange;
         }
     }
 }

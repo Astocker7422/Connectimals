@@ -24,6 +24,9 @@ public class Follower : MonoBehaviour
     //Indicates whether this Follower object is following another object
     private bool isFollowing;
 
+    //This follower's index in the player's list of followers
+    private int index;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +36,9 @@ public class Follower : MonoBehaviour
 
         //Indicate this Follower object is not following another object
         isFollowing = false;
+
+        //Initialize a value for index
+        index = 0;
     }
 
     // Update is called once per frame
@@ -63,12 +69,18 @@ public class Follower : MonoBehaviour
             {
                 //Set the leader to the last follower in the list
                 leader = followerList[listSize - 1];
+
+                //Update this follower's index
+                index = listSize - 1;
             }
             //If the list is empty,
             else
             {
                 //Set the leader to the player
                 leader = player.gameObject;
+
+                //Update this follower's index
+                index = 0;
             }
         }
 
@@ -76,9 +88,34 @@ public class Follower : MonoBehaviour
         isFollowing = newFollowing;
     }
 
+    //Set the index of this follower in the player's list of followers
+    public void SetIndex(int newIndex)
+    {
+        index = newIndex;
+    }
+
+    //Set the object this follower should follow
+    public void SetLeader(GameObject newLeader)
+    {
+        leader = newLeader;
+    }
+
     //Moves this Follower object toward its leader
     private void MoveToLeader()
     {
         agent.SetDestination(leader.transform.position);
+    }
+
+    void OnCollisionEnter(Collision coll)
+    {
+        if(coll.transform.CompareTag("Obstacle"))
+        {
+            agent.ResetPath();
+            //Indicate this follower has no leader
+            isFollowing = false;
+
+            //Update the player's list of followers
+            player.UpdateFollowers(index);
+        }
     }
 }

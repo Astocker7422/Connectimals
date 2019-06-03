@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     //Player attributes
     public float speed;
 
+    //Indicates if loses all followers behind one that dies
+    public bool breakChain;
+
     //Player components
     private Rigidbody rigid;
 
@@ -65,6 +68,61 @@ public class Player : MonoBehaviour
     public List<GameObject> GetFollowers()
     {
         return followers;
+    }
+
+    //Update list of followers after losing the follower at the input index
+    public void UpdateFollowers(int index)
+    {
+        if (breakChain)
+        {
+            //
+            //REMOVE ALL FOLLOWERS AT AND AFTER INDEX
+            //
+
+            //For each index in the list of followers from index to the end,
+            for (int listIndex = followers.Count - 1; listIndex >= index; listIndex--)
+            {
+                //Indicate the follower at that index has no leader
+                followers[listIndex].GetComponent<Follower>().SetIsFollowing(false);
+            }
+            //Remove all followers from list from index to end of list
+            followers.RemoveRange(index, followers.Count - index);
+        }
+        else
+        {
+            //
+            //UPDATE LEADER OF EACH FOLLOWER
+            //
+
+            //Remove the follower at the input index
+            followers.RemoveAt(index);
+
+            //For each index in the list of followers from index + 1 to the end,
+            for (int listIndex = followers.Count - 1; listIndex >= index; listIndex--)
+            {
+                //Access the follower object at that index
+                Follower currFollower = followers[listIndex].GetComponent<Follower>();
+
+                //Update its index to the current index
+                currFollower.SetIndex(listIndex);
+
+                //If the current index is the index of the removed follower,
+                if (listIndex == index)
+                {
+                    //If this follower is now the first in the list
+                    if(listIndex == 0)
+                    {
+                        //Update the follower's leader to be the player
+                        currFollower.SetLeader(transform.gameObject);
+                    }
+                    else
+                    {
+                        //Update the follower's leader
+                        currFollower.SetLeader(followers[listIndex - 1]);
+                    }
+                }
+            }
+        }
     }
 
     //Update the text diplaying the number of followers collected

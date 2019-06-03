@@ -21,6 +21,9 @@ public class Follower : MonoBehaviour
     //The GameObject this Follower object should follow
     private GameObject leader;
 
+    //Indicates this follower has a leader
+    private GameObject connectionIndicator;
+
     //Indicates whether this Follower object is following another object
     private bool isFollowing;
 
@@ -33,6 +36,10 @@ public class Follower : MonoBehaviour
         //Initialize components
         rigid = transform.GetComponent<Rigidbody>();
         agent = transform.GetComponent<NavMeshAgent>();
+
+        //Find the connection indicator object and deactivate it
+        connectionIndicator = transform.FindDeepChild("Connection Indicator").gameObject;
+        connectionIndicator.SetActive(false);
 
         //Indicate this Follower object is not following another object
         isFollowing = false;
@@ -82,6 +89,9 @@ public class Follower : MonoBehaviour
                 //Update this follower's index
                 index = 0;
             }
+
+            //Activate the connection indicator object
+            connectionIndicator.SetActive(true);
         }
 
         //Set the indicator based on the input
@@ -111,8 +121,12 @@ public class Follower : MonoBehaviour
         if(coll.transform.CompareTag("Obstacle"))
         {
             agent.ResetPath();
+
             //Indicate this follower has no leader
             isFollowing = false;
+
+            //Deactivate the connection indicator object
+            connectionIndicator.SetActive(false);
 
             //Update the player's list of followers
             player.UpdateFollowers(index);

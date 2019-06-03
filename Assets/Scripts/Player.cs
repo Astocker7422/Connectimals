@@ -21,8 +21,17 @@ public class Player : MonoBehaviour
     //Total number of followers in the level
     private int totalFollowers;
 
+    //Number of followers lost
+    private int lostFollowers;
+
     //Text displaying number of followers collected
     private TMPro.TMP_Text countText;
+
+    //Menu that appears when the player loses
+    private GameObject loseMenu;
+
+    //Indicates if the player has lost
+    private bool hasLost;
 
     void Start()
     {
@@ -35,9 +44,22 @@ public class Player : MonoBehaviour
         //Find total number of followers in the level
         totalFollowers = GameObject.Find("Followers").GetComponentsInChildren<Transform>().Length - 1;
 
+        //Initialize number of followers lost
+        lostFollowers = 0;
+
+        //The main canvas of the scene
+        Transform canvas = GameObject.Find("Canvas").transform;
+
         //Find and initialize text diplaying number of followers collected
-        countText = GameObject.Find("Canvas").GetComponentInChildren<TMPro.TMP_Text>();
+        countText = canvas.Find("Count Text").GetComponentInChildren<TMPro.TMP_Text>();
         SetCountText();
+
+        //Find the losing menu and deactivate it
+        loseMenu = canvas.Find("Lose Menu").gameObject;
+        loseMenu.SetActive(false);
+
+        //Indicate the player has not lost
+        hasLost = false;
     }
 
     void Update()
@@ -70,6 +92,12 @@ public class Player : MonoBehaviour
         return followers;
     }
 
+    //Returns bool indicating if the player has lost
+    public bool GetHasLost()
+    {
+        return hasLost;
+    }
+
     //Update list of followers after losing the follower at the input index
     public void UpdateFollowers(int index)
     {
@@ -87,6 +115,12 @@ public class Player : MonoBehaviour
             }
             //Remove all followers from list from index to end of list
             followers.RemoveRange(index, followers.Count - index);
+
+            //Update number of followers lost
+            lostFollowers += (followers.Count - index);
+
+            //Update count display
+            SetCountText();
         }
         else
         {
@@ -122,13 +156,21 @@ public class Player : MonoBehaviour
                     }
                 }
             }
+
+            //Update number of followers lost
+            lostFollowers += 1;
+
+            //Update count display
+            SetCountText();
         }
     }
 
     //Update the text diplaying the number of followers collected
     private void SetCountText()
     {
-        countText.text = "Connectimals: " + followers.Count + "/" + totalFollowers;
+        countText.text = "Total: " + totalFollowers 
+                         + "\nConnected: " + followers.Count
+                         + "\nLost: " + lostFollowers;
     }
 
     void OnTriggerEnter(Collider other)
@@ -147,6 +189,18 @@ public class Player : MonoBehaviour
 
                 SetCountText();
             }
+        }
+    }
+
+    void OnCollisionEnter(Collision coll)
+    {
+        if (coll.transform.CompareTag("Obstacle"))
+        {
+            hasLost = true;
+
+            Time.timeScale = 0;
+
+            loseMenu.SetActive(true);
         }
     }
 }

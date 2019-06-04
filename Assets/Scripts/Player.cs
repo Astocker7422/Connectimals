@@ -76,8 +76,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         //Take the movement input and apply movement speed
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxis("Horizontal") * speed;
+        float vertical = Input.GetAxis("Vertical") * speed;
 
         if(horizontal != 0 || vertical != 0)
         {
@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
     private void Movement(float horizontal, float vertical)
     {
         Vector3 direction = Camera.main.transform.TransformDirection(new Vector3(horizontal, 0, vertical));
-        rigid.velocity = new Vector3(direction.x * speed, rigid.velocity.y, direction.z * speed).normalized;
+        rigid.velocity = new Vector3(direction.x, rigid.velocity.y, direction.z);
 
         Vector3 newRotDir = new Vector3(direction.x, 0, direction.z);
 

@@ -32,7 +32,7 @@ public class CameraFollow : MonoBehaviour
 
     void Start ()
     {
-        playerScript = player.GetComponent<Player>();
+        playerScript = player.transform.FindDeepChild("NoodleBoy CharacterController").GetComponent<Player>();
 
         distanceChange = 1.1f;
 

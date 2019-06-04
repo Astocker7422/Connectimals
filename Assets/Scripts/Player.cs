@@ -36,12 +36,16 @@ public class Player : MonoBehaviour
     //Follow script of the main camera
     private CameraFollow cameraScript;
 
+    private Animator animator;
+
     void Start()
     {
         Time.timeScale = 1;
 
         //Initialize components
-        rigid = GetComponent<Rigidbody>();
+        rigid = transform.GetComponent<Rigidbody>();
+
+        animator = GetComponentInChildren<Animator>();
 
         //Initialize list of followers
         followers = new List<GameObject>();
@@ -75,6 +79,15 @@ public class Player : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
+        if(horizontal != 0 || vertical != 0)
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
+
         //Apply movement variables
         Movement(horizontal, vertical);
     }
@@ -83,7 +96,7 @@ public class Player : MonoBehaviour
     private void Movement(float horizontal, float vertical)
     {
         Vector3 direction = Camera.main.transform.TransformDirection(new Vector3(horizontal, 0, vertical));
-        rigid.velocity = new Vector3(direction.x, rigid.velocity.y, direction.z).normalized * speed;
+        rigid.velocity = new Vector3(direction.x * speed, rigid.velocity.y, direction.z * speed).normalized;
 
         Vector3 newRotDir = new Vector3(direction.x, 0, direction.z);
 

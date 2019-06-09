@@ -8,8 +8,8 @@ public class Player : MonoBehaviour
 {
     //Player attributes
     public float speed;
-    private float jumpSpeed;
-    private float groundPoundSpeed;
+    public float jumpSpeed;
+    public float groundPoundSpeed;
 
     //Indicates if the player is touching the ground
     private bool isGrounded;
@@ -71,9 +71,9 @@ public class Player : MonoBehaviour
     {
         Time.timeScale = 1;
 
-        jumpSpeed = 8;
+        jumpSpeed = 2;
 
-        groundPoundSpeed = 20;
+        groundPoundSpeed = 5;
 
         isGrounded = true;
 

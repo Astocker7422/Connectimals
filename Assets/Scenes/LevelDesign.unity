@@ -3348,6 +3348,7 @@ GameObject:
   - component: {fileID: 1410229430}
   - component: {fileID: 1410229429}
   - component: {fileID: 1410229428}
+  - component: {fileID: 1410229432}
   m_Layer: 8
   m_Name: Player (PM)
   m_TagString: Player
@@ -3426,8 +3427,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
+  jumpSpeed: 2
+  groundPoundSpeed: 0
   breakChain: 0
   followers: []
+--- !u!75 &1410229432
+ConstantForce:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410229426}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0.1, z: 0}
+  m_RelativeForce: {x: 0, y: 0, z: 0}
+  m_Torque: {x: 0, y: 0, z: 0}
+  m_RelativeTorque: {x: 0, y: 0, z: 0}
 --- !u!1001 &1480299048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4665,7 +4680,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1410229431}
     - target: {fileID: 374679395129958554, guid: 219cc82cfa40f455dab3a7b8922c4785,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -6053,15 +6068,15 @@ MonoBehaviour:
   solverIterationCount: 6
   visualizeTargetPose: 1
   mappingWeight: 1
-  pinWeight: 0.989
-  muscleWeight: 0.948
+  pinWeight: 0.937
+  muscleWeight: 0.911
   muscleSpring: 100
   muscleDamper: 0
   pinPow: 4
   pinDistanceFalloff: 5
   updateJointAnchors: 1
   supportTranslationAnimation: 0
-  angularLimits: 0
+  angularLimits: 1
   internalCollisions: 1
   muscles:
   - name: Hip_J (Transforms)

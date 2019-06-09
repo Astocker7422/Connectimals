@@ -8,6 +8,29 @@ public class Player : MonoBehaviour
 {
     //Player attributes
     public float speed;
+    private float jumpSpeed;
+    private float groundPoundSpeed;
+
+    //Indicates if the player is touching the ground
+    private bool isGrounded;
+
+    //Indicates if the player is currently double jumping
+    private bool isDoubleJumping;
+
+    //Indicates if the double jump was activated during the previous frame
+    private bool doubleJumpPrevFrame;
+
+    //Value tracking how long the player has been gliding
+    private float glideTimer;
+
+    //Value representing how long the player is allowed to glide
+    private float glideTime;
+
+    //Indicates if the player is currently attacking in the air
+    private bool isJumpAttacking;
+
+    //Indicates if the player is ground pounding
+    private bool isGroundPounding;
 
     //Indicates if loses all followers behind one that dies
     public bool breakChain;
@@ -38,14 +61,36 @@ public class Player : MonoBehaviour
 
     private Animator animator;
 
+    //Normal global gravity
+    private float globalGravity = -9.81f;
+
+    //Scale to apply to gravity
+    private float gravityScale = 1.0f;
+
     void Start()
     {
         Time.timeScale = 1;
+
+        jumpSpeed = 8;
+
+        groundPoundSpeed = 20;
+
+        isGrounded = true;
+
+        isDoubleJumping = false;
+
+        doubleJumpPrevFrame = false;
+
+        glideTimer = 0;
+
+        glideTime = 3;
 
         //Initialize components
         rigid = transform.GetComponent<Rigidbody>();
 
         animator = GetComponentInChildren<Animator>();
+
+        rigid.useGravity = false;
 
         //Initialize list of followers
         followers = new List<GameObject>();
@@ -75,6 +120,60 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        //If the jump key is pressed,
+        if (Input.GetButtonDown("Jump"))
+        {
+            //If the player is touching the ground,
+            if (isGrounded)
+            {
+                //Apply jump to player
+                Jump();
+            }
+            //If the player is not touching the ground,
+            else
+            {
+                //If the player has not already activated the double jump,
+                if (!isDoubleJumping)
+                {
+                    //Apply the double jump to the player
+                    DoubleJump();
+
+                    //Indicate the double jump was activated during this frame
+                    doubleJumpPrevFrame = true;
+                }
+            }
+        }
+
+        //If the jump key is held down,
+        if (Input.GetButton("Jump"))
+        {
+            //If the double jump was activated this frame or the previous frame,
+            if (doubleJumpPrevFrame)
+            {
+                //If the glide timer has not reached its limit,
+                if (glideTimer < glideTime)
+                {
+                    //Reduce the gravity scale
+                    gravityScale = 0.33f;
+                }
+                //If the glide timer has reached its limit,
+                else
+                {
+                    //Return the gravity scale to normal
+                    gravityScale = 1;
+                }
+            }
+        }
+        //If the jump key is not held down,
+        else
+        {
+            //Indicate the double jump was not activated on the previous frame
+            doubleJumpPrevFrame = false;
+
+            //Return the gravity scale to normal
+            gravityScale = 1;
+        }
+
         //Take the movement input and apply movement speed
         float horizontal = Input.GetAxis("Horizontal") * speed;
         float vertical = Input.GetAxis("Vertical") * speed;
@@ -88,8 +187,31 @@ public class Player : MonoBehaviour
             animator.SetBool("isWalking", false);
         }
 
-        //Apply movement variables
-        Movement(horizontal, vertical);
+        //If the ground pound has not been activated,
+        if (!isGroundPounding)
+        {
+            //Apply movement variables
+            Movement(horizontal, vertical);
+        }
+
+        //If the attack button is pressed,
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if(!isGrounded)
+            {
+                StartCoroutine(GroundPound());
+            }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        //If is not ground pounding,
+        if (!isGroundPounding)
+        {
+            //Apply gravity
+            rigid.AddForce(Vector3.up * globalGravity * gravityScale, ForceMode.Acceleration);
+        }
     }
 
     //Applies movement to the player using the RigidBody
@@ -104,6 +226,43 @@ public class Player : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(newRotDir);
         }
+    }
+
+    //Applies jumping behavior to the player object using the RigidBody
+    private void Jump()
+    {
+        //If the ground pound has not been activated,
+        if (!isGroundPounding)
+        {
+            //Apply a jump and play the jump audio
+            rigid.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+        }
+    }
+
+    //Applies slight upward velocity to the player if they have already jumped once
+    private void DoubleJump()
+    {
+        //If the ground pound has not been activated,
+        if (!isGroundPounding)
+        {
+            //Indicate the player has activated double jump
+            isDoubleJumping = true;
+
+            //Move the Rigidbody upward and maintain movement in X
+            rigid.AddForce(Vector3.up * jumpSpeed / 2, ForceMode.Impulse);
+        }
+    }
+
+    //Waits in air, then falls quickly
+    private IEnumerator GroundPound()
+    {
+        isGroundPounding = true;
+
+        rigid.velocity = Vector3.zero;
+
+        yield return new WaitForSeconds(1);
+
+        rigid.AddForce(Vector3.down * groundPoundSpeed, ForceMode.Impulse);
     }
 
     //Access list of followers
@@ -241,6 +400,37 @@ public class Player : MonoBehaviour
             Time.timeScale = 0;
 
             loseMenu.SetActive(true);
+        }
+        //If the other object is the ground,
+        else if (coll.transform.CompareTag("Ground"))
+        {
+            //Return gravity scale to normal
+            //if player landed from glide before glide function finished
+            gravityScale = 1;
+
+            //Indicate the player is touching the ground
+            isGrounded = true;
+
+            //Indicate the player has not activated the double jump
+            isDoubleJumping = false;
+
+            //Indicate the double jump was not activated on the previous frame
+            doubleJumpPrevFrame = false;
+
+            isGroundPounding = false;
+
+            //Reset glide timer
+            glideTimer = 0;
+        }
+    }
+
+    void OnCollisionExit(Collision coll)
+    {
+        //If the other object is the ground,
+        if (coll.transform.CompareTag("Ground"))
+        {
+            //Indicate the player is not touching the ground
+            isGrounded = false;
         }
     }
 }

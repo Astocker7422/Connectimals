@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     public bool breakChain;
 
     //Player components
-    private Rigidbody rigid;
+    Rigidbody rigid;
 
     //List of current followers
     public List<GameObject> followers;
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
     //Follow script of the main camera
     private CameraFollow cameraScript;
 
-    private Animator animator;
+    Animator animator;
 
     //Normal global gravity
     private float globalGravity = -9.81f;
@@ -71,11 +71,11 @@ public class Player : MonoBehaviour
     {
         Time.timeScale = 1;
 
-        jumpSpeed = 2;
+        //jumpSpeed = 2;
 
-        groundPoundSpeed = 5;
+        //groundPoundSpeed = 5;
 
-        isGrounded = true;
+        //isGrounded = true;
 
         isDoubleJumping = false;
 
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
         glideTime = 3;
 
         //Initialize components
-        rigid = transform.GetComponent<Rigidbody>();
+        rigid = GetComponent<Rigidbody>();
 
         animator = GetComponentInChildren<Animator>();
 
@@ -118,7 +118,7 @@ public class Player : MonoBehaviour
         cameraScript = Camera.main.GetComponent<CameraFollow>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         //If the jump key is pressed,
         if (Input.GetButtonDown("Jump"))
@@ -178,7 +178,7 @@ public class Player : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal") * speed;
         float vertical = Input.GetAxis("Vertical") * speed;
 
-        if(horizontal != 0 || vertical != 0)
+        if(System.Math.Abs(horizontal) > 0 || System.Math.Abs(vertical) > 0)
         {
             animator.SetBool("isWalking", true);
         }
@@ -202,10 +202,7 @@ public class Player : MonoBehaviour
                 StartCoroutine(GroundPound());
             }
         }
-    }
 
-    void FixedUpdate()
-    {
         //If is not ground pounding,
         if (!isGroundPounding)
         {

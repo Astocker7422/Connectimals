@@ -1538,7 +1538,7 @@ GameObject:
   - component: {fileID: 498733074}
   m_Layer: 0
   m_Name: Followers
-  m_TagString: Untagged
+  m_TagString: Follower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7583,6 +7583,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 876806091, guid: c5dea91c0f9aaa6499f8c4f20fb39c51, type: 3}
+      propertyPath: speed
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5dea91c0f9aaa6499f8c4f20fb39c51, type: 3}

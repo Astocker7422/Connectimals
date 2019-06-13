@@ -12,24 +12,31 @@ public class CubePlayer : MonoBehaviour
     //Indicates if loses all followers behind one that dies
     public bool breakChain;
 
+    [SerializeField]
     //Player components
     private Rigidbody rigid;
 
+    [SerializeField]
     //List of current followers
     private List<GameObject> followers;
 
+    [SerializeField]
     //Total number of followers in the level
     private int totalFollowers;
 
+    [SerializeField]
     //Number of followers lost
     private int lostFollowers;
 
+    [SerializeField]
     //Text displaying number of followers collected
     private TMPro.TMP_Text countText;
 
+    [SerializeField]
     //Menu that appears when the player loses
     private GameObject loseMenu;
 
+   [SerializeField]
     //Indicates if the player has lost
     private bool hasLost;
 

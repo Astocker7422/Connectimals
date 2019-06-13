@@ -42,6 +42,7 @@ public class CubeFollower : MonoBehaviour
         //Initialize components
         rigid = transform.GetComponent<Rigidbody>();
         agent = transform.GetComponent<NavMeshAgent>();
+        player = GameObject.FindWithTag("Player").GetComponent<CubePlayer>();
 
         //Find the connection indicator object and deactivate it
         connectionIndicator = transform.FindDeepChild("Connection Indicator").gameObject;

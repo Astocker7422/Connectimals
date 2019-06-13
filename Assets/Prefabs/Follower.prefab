@@ -145,9 +145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2abf63e90f24a7a83316b5b1b24e35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 6
   distance: 0
-  player: {fileID: 0}
+  player: {fileID: 876806091, guid: c5dea91c0f9aaa6499f8c4f20fb39c51, type: 3}
   isDead: 0
   leader: {fileID: 0}
   index: 0

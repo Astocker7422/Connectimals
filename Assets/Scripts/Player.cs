@@ -114,11 +114,9 @@ public class Player : MonoBehaviour
 
         //Indicate the player has not lost
         hasLost = false;
-
-        cameraScript = Camera.main.GetComponent<CameraFollow>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         //If the jump key is pressed,
         if (Input.GetButtonDown("Jump"))

@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour
 {
     //The player the camera is following
     public GameObject player;
-    private CubePlayer playerScript;
+    private Player playerScript;
 
     //The amount the camera's distance from player should change after gain/lose follower
     public float distanceChange;
@@ -33,7 +33,7 @@ public class CameraFollow : MonoBehaviour
     void Start ()
     {
         //playerScript = player.transform.FindDeepChild("NoodleBoy CharacterController").GetComponent<Player>();
-        playerScript = player.GetComponent<CubePlayer>();
+        playerScript = player.GetComponent<Player>();
 
         distanceChange = 1.1f;
 

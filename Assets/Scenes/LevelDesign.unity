@@ -2125,7 +2125,7 @@ GameObject:
   - component: {fileID: 1381189631}
   m_Layer: 0
   m_Name: Player (PM) Root
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2984,7 +2984,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1937085131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5824,6 +5824,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Follower (No Puppet)
       objectReference: {fileID: 0}
+    - target: {fileID: 7253250361366890936, guid: c9b3f89f22d9a2547af173a12beb415c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7253250361366890943, guid: c9b3f89f22d9a2547af173a12beb415c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5883,7 +5888,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 88737941}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9b3f89f22d9a2547af173a12beb415c, type: 3}
 --- !u!136 &7289976675872643657
